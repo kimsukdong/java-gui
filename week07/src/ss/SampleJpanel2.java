@@ -36,46 +36,76 @@ class JPanel1 extends JPanel implements ActionListener  {
 
 class JPanel2 extends JPanel {
 	int k=50;
-	JSlider sl;
+	JSlider slider;
+	JSlider [] sl = new JSlider [3];
+
 	Font  f;
 	JLabel a;
 	public JPanel2() {	
 		setLayout(new BorderLayout());
 		f = new Font("Arial",Font.BOLD,k);
 		a = new JLabel("Java", JLabel.CENTER); 	
-		sl = new JSlider(JSlider.HORIZONTAL, 10, 100, 50);
-		sl.setPaintLabels(true);
-		sl.setPaintTicks(true);
-		sl.setPaintTrack(true);
-		sl.setMajorTickSpacing(10);
-		sl.setMinorTickSpacing(5);
-		sl.addChangeListener(new ChangeListener() {
+		slider = new JSlider(JSlider.HORIZONTAL, 10, 100, 50);
+		slider.setPaintLabels(true);
+		slider.setPaintTicks(true);
+		slider.setPaintTrack(true);
+		slider.setMajorTickSpacing(10);
+		slider.setMinorTickSpacing(5);
+		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				k=sl.getValue();
+				k=slider.getValue();
 				f = new Font("Arial",Font.BOLD,k);
 				a.setFont(f);
 			}
 		});
 		
 		a.setFont(f);
-		a.setForeground(Color.red);
 		setLayout(new BorderLayout());
 		add(a, BorderLayout.CENTER); 
-		add(sl, BorderLayout.SOUTH);
+		add(slider, BorderLayout.NORTH);
+		add(new Cp(), BorderLayout.SOUTH);
 		setBackground(Color.cyan);
 	}		
+
+	class Cp extends JPanel {
+		public Cp() {
+			setLayout(new GridLayout(3,1)); 
+			for(int i=0; i<sl.length; i++) {
+				sl[i] = new JSlider(JSlider.HORIZONTAL, 0, 255, 128);
+				sl[i].setPaintLabels(true);
+				sl[i].setPaintTicks(true);
+				sl[i].setPaintTrack(true);
+				sl[i].setMajorTickSpacing(50);
+				sl[i].setMinorTickSpacing(10);
+				sl[i].addChangeListener(new MyChangeListener());
+				add(sl[i]);
+			}
+			sl[0].setForeground(Color.RED);
+			sl[1].setForeground(Color.GREEN);
+			sl[2].setForeground(Color.BLUE);
+			a.setOpaque(true);
+			a.setForeground(new Color(sl[0].getValue(),sl[1].getValue(), sl[2].getValue()));
+
+		}
+	}
+	class MyChangeListener implements ChangeListener {
+		public void stateChanged(ChangeEvent e) {
+			a.setForeground(new Color(sl[0].getValue(),sl[1].getValue(), sl[2].getValue()));
+		}
+	}
 
 }
 
 
+
 public class SampleJpanel2 extends JFrame {
 	public SampleJpanel2() {
-		super("¿¹Á¦"); 
+		super("GUI Example"); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new GridLayout(1,2,5,5));
 		add(new JPanel1()); 
 		add(new JPanel2()); 
-		setSize(600,400);
+		setSize(600,600);
 		Container contentPane = getContentPane();
 		contentPane.setBackground(Color.ORANGE);
 		setVisible(true);
