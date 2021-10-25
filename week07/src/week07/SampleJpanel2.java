@@ -26,6 +26,7 @@ class JPanel2 extends JPanel {
 		Font  f = new Font("Arial",Font.BOLD,50);
 		JLabel a = new JLabel("Java", JLabel.CENTER); 	
 		a.setFont(f);
+		a.setForeground(Color.red);
 		setLayout(new BorderLayout());
 		add(a, BorderLayout.CENTER); 
 		setBackground(Color.cyan);
