@@ -45,11 +45,11 @@ class JPanel2 extends JPanel {
 		setLayout(new BorderLayout());
 		f = new Font("Arial",Font.BOLD,k);
 		a = new JLabel("Java", JLabel.CENTER); 	
-		slider = new JSlider(JSlider.HORIZONTAL, 10, 100, 50);
+		slider = new JSlider(JSlider.HORIZONTAL, 10, 150, 50);
 		slider.setPaintLabels(true);
 		slider.setPaintTicks(true);
 		slider.setPaintTrack(true);
-		slider.setMajorTickSpacing(10);
+		slider.setMajorTickSpacing(20);
 		slider.setMinorTickSpacing(5);
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
@@ -71,7 +71,7 @@ class JPanel2 extends JPanel {
 		public Cp() {
 			setLayout(new GridLayout(3,1)); 
 			for(int i=0; i<sl.length; i++) {
-				sl[i] = new JSlider(JSlider.HORIZONTAL, 0, 255, 128);
+				sl[i] = new JSlider(JSlider.HORIZONTAL, 0, 255, 10);
 				sl[i].setPaintLabels(true);
 				sl[i].setPaintTicks(true);
 				sl[i].setPaintTrack(true);
@@ -105,7 +105,7 @@ public class SampleJpanel2 extends JFrame {
 		setLayout(new GridLayout(1,2,5,5));
 		add(new JPanel1()); 
 		add(new JPanel2()); 
-		setSize(600,600);
+		setSize(800,600);
 		Container contentPane = getContentPane();
 		contentPane.setBackground(Color.ORANGE);
 		setVisible(true);
